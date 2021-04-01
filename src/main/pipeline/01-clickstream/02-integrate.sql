@@ -10,7 +10,8 @@
 CREATE table events_per_min AS
 SELECT userid, count(*) AS events
 FROM clickstream window TUMBLING (size 60 second)
-GROUP BY userid;
+GROUP BY userid
+emit changes;
 
 -- BUILD PAGE_VIEWS
 CREATE TABLE pages_per_min AS
